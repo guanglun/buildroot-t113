@@ -15,8 +15,9 @@
 		ethernet0 = &rtl8189fs;
 		mmc0 = &mmc0;
 		serial0 = &uart0;
-		serial1 = &uart1;
+		serial2 = &uart2;
 		serial3 = &uart3;
+		serial4 = &uart4;
 		serial5 = &uart5;
 	};
 
@@ -203,11 +204,6 @@
 		bias-pull-up;
 	};		
 
-	uart5_pd5_pins: uart5-pd5-pins {
-	    pins = "PD5", "PD6";
-	    function = "uart5";
-	};
-
 	clk_pg11_pin: clk-pg11-pin {
 			pins = "PG11";
 			function = "clk";
@@ -225,7 +221,7 @@
 	uart-has-rtscts;
 	pinctrl-0 = <&uart1_pg6_pins>, <&uart1_pg8_rts_cts_pins>;
 	pinctrl-names = "default";
-	status = "okay";
+	status = "disabled";
 
 	bluetooth {
 		compatible = "realtek,rtl8723ds-bt";
@@ -235,8 +231,20 @@
 	};
 };
 
+&uart2 {
+	pinctrl-0 = <&uart2_pd1_pins>;
+	pinctrl-names = "default";
+	status = "okay";
+};
+
 &uart3 {
 	pinctrl-0 = <&uart3_pb_pins>;
+	pinctrl-names = "default";
+	status = "okay";
+};
+
+&uart4 {
+	pinctrl-0 = <&uart4_pd7_pins>;
 	pinctrl-names = "default";
 	status = "okay";
 };
@@ -306,7 +314,7 @@
         pinctrl-0 = <&spi1_pd_pins>;
         pinctrl-names = "default";
         status = "okay";
-		cs-gpios = <&pio 4 10 GPIO_ACTIVE_LOW>,<&pio 4 0 GPIO_ACTIVE_LOW>;
+		cs-gpios = <&pio 3 10 GPIO_ACTIVE_LOW>,<&pio 3 0 GPIO_ACTIVE_LOW>;//PD10 PD0
 		num-cs = <2>;
 
 		spidev@0 {
@@ -343,7 +351,7 @@
 	vqmmc-supply = <&reg_vcc_3v3>;
 	pinctrl-0 = <&mmc1_pins>;
 	pinctrl-names = "default";
-	status = "okay";
+	status = "disabled";
 
     rtl8189fs: sdio_wifi@1 {
         reg = <1>;
@@ -399,6 +407,7 @@
 };
 
 &usbphy {
+	usb0_id_det-gpios = <&pio 3 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; /* PD9 */
 	usb0_vbus-supply = <&reg_usbvbus>;
 	usb1_vbus-supply = <&reg_usbvbus>;
 	status = "okay";

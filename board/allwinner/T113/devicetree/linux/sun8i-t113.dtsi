@@ -289,10 +289,25 @@
 				function = "uart1";
 			};
 
+			uart2_pd1_pins: uart2-pd1-pins {
+				pins = "PD1", "PD2";
+				function = "uart2";
+			};
+
 			/omit-if-no-ref/
 			uart3_pb_pins: uart3-pb-pins {
 				pins = "PB6", "PB7";
 				function = "uart3";
+			};
+
+			uart4_pd7_pins: uart4-pd7-pins {
+				pins = "PD7", "PD8";
+				function = "uart4";
+			};
+
+			uart5_pd5_pins: uart5-pd5-pins {
+				pins = "PD5", "PD6";
+				function = "uart5";
 			};
 
 			/omit-if-no-ref/
