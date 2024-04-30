@@ -149,7 +149,7 @@
 &tcon_lcd0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&lcd_rgb666_pins>;
-	status = "okay";
+	status = "disabled";
 };
 
 &tcon_lcd0_out {
@@ -203,8 +203,8 @@
 		bias-pull-up;
 	};		
 
-	uart5_pb4_pins: uart5-pb4-pins {
-	    pins = "PB4", "PB5";
+	uart5_pd5_pins: uart5-pd5-pins {
+	    pins = "PD5", "PD6";
 	    function = "uart5";
 	};
 
@@ -242,27 +242,27 @@
 };
 
 &uart5 {
-	pinctrl-0 = <&uart5_pb4_pins>;
+	pinctrl-0 = <&uart5_pd5_pins>;
 	pinctrl-names = "default";
 	status = "okay";
 };
 
-&i2c2 {
-	pinctrl-0 = <&i2c2_pe12_pins>;
+&i2c0 {
+	pinctrl-0 = <&i2c0_pb2_pins>;
 	pinctrl-names = "default";
 	status = "okay";
+};
 
-	gt911@5d {
-		compatible = "goodix,gt911";
-		reg = <0x5d>;
-		interrupt-parent = <&pio>;
-		interrupts = <1 3 IRQ_TYPE_EDGE_FALLING>;
+&i2c1 {
+	pinctrl-0 = <&i2c1_pb4_pins>;
+	pinctrl-names = "default";
+	status = "okay";
+};
 
-		irq-gpios = <&pio 1 3 GPIO_ACTIVE_HIGH>;
-		reset-gpios = <&pio 1 2 GPIO_ACTIVE_HIGH>;
-
-		VDD-supply = <&reg_vcc_3v3>;
-	};
+&i2c3 {
+	pinctrl-0 = <&i2c3_pe6_pins>;
+	pinctrl-names = "default";
+	status = "okay";
 };
 
 &spi0 {
@@ -300,6 +300,28 @@
                         };
                 };
         };
+};
+
+&spi1 {
+        pinctrl-0 = <&spi1_pd_pins>;
+        pinctrl-names = "default";
+        status = "okay";
+		cs-gpios = <&pio 4 10 GPIO_ACTIVE_LOW>,<&pio 4 0 GPIO_ACTIVE_LOW>;
+		num-cs = <2>;
+
+		spidev@0 {
+			status = "okay";
+			compatible = "rohm,dh2228fv";
+			spi-max-frequency = <100000000>;
+			reg = <0>;
+		};
+
+		spidev@1 {
+			status = "okay";
+			compatible = "rohm,dh2228fv";
+			spi-max-frequency = <100000000>;
+			reg = <1>;
+		};
 };
 
 &mmc0 {

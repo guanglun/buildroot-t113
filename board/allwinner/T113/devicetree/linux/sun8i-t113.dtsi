@@ -155,9 +155,14 @@
 			};
 
 			/omit-if-no-ref/
-			i2c0_pb10_pins: i2c0-pb10-pins {
-				pins = "PB10", "PB11";
+			i2c0_pb2_pins: i2c0-pb2-pins {
+				pins = "PB2", "PB3";
 				function = "i2c0";
+			};
+
+			i2c1_pb4_pins: i2c1-pb4-pins {
+				pins = "PB4", "PB5";
+				function = "i2c1";
 			};
 
 			/omit-if-no-ref/
@@ -169,6 +174,11 @@
 			i2c2_pe12_pins: i2c2-pe12-pins {
 				pins = "PE12", "PE13";
 				function = "i2c2";
+			};
+
+			i2c3_pe6_pins: i2c3-pe6-pins {
+				pins = "PE6", "PE7";
+				function = "i2c3";
 			};
 
 			/omit-if-no-ref/
@@ -257,7 +267,7 @@
 
 			/omit-if-no-ref/
 			spi1_pd_pins: spi1-pd-pins {
-				pins = "PD10", "PD11", "PD12", "PD13", "PD14", "PD15";
+				pins = "PD11", "PD12", "PD13";
 				function = "spi1";
 			};
 
