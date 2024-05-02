@@ -12,7 +12,7 @@
 	compatible = "allwinner,sun20i-d1", "allwinner,sun8i";
 
 	aliases {
-		ethernet0 = &rtl8189fs;
+		//ethernet0 = &rtl8189fs;
 		mmc0 = &mmc0;
 		serial0 = &uart0;
 		serial2 = &uart2;
@@ -22,8 +22,9 @@
 	};
 
 	chosen {
-		stdout-path = "serial0:115200n8";
-		// bootargs = "mem=128M cma=72M root=/dev/mmcblk0p2 init=/sbin/init rootwait earlyprintk=sunxi-uart,0x02501400 console=tty0 console=ttyS5,115200";
+		stdout-path = "serial3:115200n8";
+		bootargs = "mem=128M ubi.mtd=3 rootfstype=ubifs root=ubi0:rootfs rw rootwait console=tty0 console=ttyS3,115200";
+		// bootargs = "mem=128M cma=72M root=/dev/mmcblk0p2 init=/sbin/init rootwait earlyprintk=sunxi-uart,0x02500c00 console=tty0 console=ttyS3,115200";
 		// bootargs = "mem=128M cma=64M root=/dev/mmcblk0p2 init=/sbin/init rootwait console=ttyS5,115200 earlyprintk=sunxi-uart,0x02501400";
 	};
 
@@ -289,22 +290,25 @@
 
                         partition@0 {
                                 label = "awboot";
-                                reg = <0x00000000 0x00020000>;	/* 128K */
-                        };
-
-                        partition@20000 {
-                                label = "dtb";
-                                reg = <0x00020000 0x00020000>;  /* 128k */
+                                reg = <0x00000000 0x00040000>;	/* 256K */
+								read-only;
                         };
 
                         partition@40000 {
-                                label = "kernel";
-                                reg = <0x00040000 0x00800000>;  /* 8MB */
+                                label = "dtb";
+                                reg = <0x00040000 0x00040000>;  /* 256K */
+								read-only;
                         };
 
-                        partition@840000 {
-                                label = "filesystem";
-                                reg = <0x00840000 0x0f7c0000>;
+                        partition@80000 {
+                                label = "kernel";
+                                reg = <0x00080000 0x00780000>;  /* 7.5MB */
+								read-only;
+                        };
+
+                        partition@800000 {
+                                label = "rootfs";
+                                reg = <0x00800000 0x07800000>;
                         };
                 };
         };
