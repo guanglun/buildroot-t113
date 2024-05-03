@@ -236,21 +236,21 @@
 			};
 
 			/omit-if-no-ref/
+			pwm1_pd17_pin: pwm1-pd17-pin {
+				pins = "PD17";
+				function = "pwm1";
+			};
+
+			/omit-if-no-ref/
 			pwm2_pd18_pin: pwm2-pd18-pin {
 				pins = "PD18";
 				function = "pwm2";
 			};
 
 			/omit-if-no-ref/
-			pwm4_pd20_pin: pwm4-pd20-pin {
-				pins = "PD20";
-				function = "pwm4";
-			};
-
-			/omit-if-no-ref/
-			pwm7_pd22_pin: pwm7-pd22-pin {
-				pins = "PD22";
-				function = "pwm7";
+			pwm3_pd19_pin: pwm3-pd19-pin {
+				pins = "PD19";
+				function = "pwm3";
 			};
 
 			/omit-if-no-ref/
@@ -332,12 +332,13 @@
 		};
 
 		pwm: pwm@2000c00 {
-			compatible = "allwinner,sun20i-d1-pwm";
+			compatible = "allwinner,sun50i-r329-pwm";
 			reg = <0x2000c00 0x400>;
 			interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
 			clocks = <&ccu CLK_BUS_PWM>, <&osc24M>;
-			clock-names = "bus", "mod";
+			clock-names = "bus", "hosc";
 			resets = <&ccu RST_BUS_PWM>;
+			allwinner,pwm-channels = <8>;
 			status = "disabled";
 			#pwm-cells = <3>;
 		};

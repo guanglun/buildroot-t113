@@ -212,6 +212,12 @@
 
 };
 
+&pwm {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pwm0_pd16_pin>, <&pwm1_pd17_pin>, <&pwm2_pd18_pin>, <&pwm3_pd19_pin>;
+	status = "okay";
+};
+
 &uart0 {
 	pinctrl-0 = <&uart0_pe2_pins>;
 	pinctrl-names = "default";
