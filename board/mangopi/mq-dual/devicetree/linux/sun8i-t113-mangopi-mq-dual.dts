@@ -23,7 +23,7 @@
 
 	chosen {
 		stdout-path = "serial3:115200n8";
-		bootargs = "mem=128M ubi.mtd=3 rootfstype=ubifs root=ubi0:rootfs rw rootwait console=tty0 console=ttyS3,115200";
+		bootargs = "mem=128M ubi.mtd=3 rootfstype=ubifs root=ubi0:rootfs rw rootwait console=tty0 console=ttyS3,115200 isolcpus=1";
 		// bootargs = "mem=128M cma=72M root=/dev/mmcblk0p2 init=/sbin/init rootwait earlyprintk=sunxi-uart,0x02500c00 console=tty0 console=ttyS3,115200";
 		// bootargs = "mem=128M cma=64M root=/dev/mmcblk0p2 init=/sbin/init rootwait console=ttyS5,115200 earlyprintk=sunxi-uart,0x02501400";
 	};
