@@ -1,0 +1,32 @@
+#!/bin/sh
+
+
+# Start all init scripts in /etc/init.d
+# executing them in numerical order.
+#
+for i in /etc/init.d/S??* ;do
+
+     # Ignore dangling symlinks (if any).
+     [ ! -f "$i" ] && continue
+
+     case "$i" in
+	*.sh)
+	    # Source shell script for speed.
+	    (
+		trap - INT QUIT TSTP
+		set start
+		. $i
+	    )
+	    ;;
+	*)
+	    # No sh extension, so fork subprocess.
+	    $i start
+	    ;;
+    esac
+done
+
+
+insmod /lib/modules/6.8.0/kernel/drivers/usb/gadget/libcomposite.ko
+insmod /lib/modules/6.8.0/kernel/drivers/usb/gadget/function/usb_f_mass_storage.ko
+insmod /lib/modules/6.8.0/kernel/drivers/usb/gadget/legacy/g_mass_storage.ko file=/dev/mmcblk0p1 stall=0 removable=1
+mount /dev/mmcblk0p1 /mnt
