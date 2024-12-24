@@ -4,16 +4,17 @@
 #
 
 start() {
-        printf "Starting WiFi: "
+        printf "Starting WiFi AP: "
         ifconfig wlan0 up
-        wpa_supplicant -Dnl80211 -iwlan0 -c /etc/wpa_supplicant.conf -B
-        udhcpc -b -i wlan0 -R
+        ifconfig wlan0 10.10.20.1
+        udhcpd -f /etc/udhcpd.conf &
+        hostapd -B /etc/hostapd.conf
         [ $? -eq 0 ] && echo "OK" || echo "ERROR"
 }
 stop() {
-        printf "Stopping WiFi: "
-        killall udhcpc
-        killall wpa_supplicant
+        printf "Stopping WiFi AP: "
+        killall udhcpd
+        killall hostapd
 	ifconfig wlan0 down
         [ $? -eq 0 ] && echo "OK" || echo "ERROR"
 }
