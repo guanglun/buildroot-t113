@@ -390,7 +390,7 @@
 };
 
 &ehci0 {
-	status = "disabled";
+	status = "okay";
 };
 
 &dmic {
@@ -403,7 +403,7 @@
 
 
 &ohci0 {
-	status = "disabled";
+	status = "okay";
 };
 
 &ohci1 {
