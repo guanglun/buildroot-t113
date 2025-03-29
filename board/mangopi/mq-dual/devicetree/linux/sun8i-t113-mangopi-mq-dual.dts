@@ -23,7 +23,7 @@
 
 	chosen {
 		stdout-path = "serial3:115200n8";
-		bootargs = "mem=128M ubi.mtd=3 rootfstype=ubifs root=ubi0:rootfs rw rootwait console=tty0 console=ttyS4,115200 isolcpus=1";
+		bootargs = "mem=128M ubi.mtd=3 rootfstype=ubifs root=ubi0:rootfs rw rootwait console=tty0 console=ttyS4,115200";
 		// bootargs = "mem=128M cma=72M root=/dev/mmcblk0p2 init=/sbin/init rootwait earlyprintk=sunxi-uart,0x02500c00 console=tty0 console=ttyS3,115200";
 		// bootargs = "mem=128M cma=64M root=/dev/mmcblk0p2 init=/sbin/init rootwait console=ttyS5,115200 earlyprintk=sunxi-uart,0x02501400";
 	};
@@ -100,7 +100,7 @@
 		status {
 			label = "led_blue";
 			linux,default-trigger = "heartbeat";
-			gpios = <&pio 3 22 GPIO_ACTIVE_LOW>;
+			gpios = <&pio 6 11 GPIO_ACTIVE_LOW>;
 			default-state = "on";
 		};
 	};
@@ -112,7 +112,6 @@
 		reset-gpios = <&pio 6 12 GPIO_ACTIVE_LOW>; /* PG12 */
 		assigned-clocks = <&ccu CLK_FANOUT1>;
 		assigned-clock-rates = <32768>;
-		pinctrl-0 = <&clk_pg11_pin>;
 		pinctrl-names = "default";
 	};
 
@@ -204,12 +203,6 @@
 		drive-strength = <10>;
 		bias-pull-up;
 	};		
-
-	clk_pg11_pin: clk-pg11-pin {
-			pins = "PG11";
-			function = "clk";
-	};
-
 };
 
 &pwm {
