@@ -25,11 +25,8 @@ for i in /etc/init.d/S??* ;do
     esac
 done
 
-
-# insmod /lib/modules/6.8.0/kernel/drivers/usb/gadget/libcomposite.ko
-# insmod /lib/modules/6.8.0/kernel/drivers/usb/gadget/function/usb_f_mass_storage.ko
-# insmod /lib/modules/6.8.0/kernel/drivers/usb/gadget/legacy/g_mass_storage.ko file=/dev/mmcblk0p1 stall=0 removable=1
-# mount /dev/mmcblk0p1 /mnt
-
 gpioset gpiochip0 116=0
 gpioset gpiochip0 117=0
+
+# cd /root/px4
+# ./bin/px4 -s px4_mc.config &

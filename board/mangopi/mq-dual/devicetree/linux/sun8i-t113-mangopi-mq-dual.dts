@@ -377,12 +377,12 @@
 	status = "disabled";
 };
 
-&usb_otg {
-	dr_mode = "otg";
+&ohci1 {
 	status = "okay";
 };
 
-&ehci0 {
+&usb_otg {
+	dr_mode = "otg";
 	status = "okay";
 };
 
@@ -390,29 +390,13 @@
 	status = "okay";
 };
 
-&ehci1 {
-	status = "okay";
-};
-
-
-&ohci0 {
-	status = "okay";
-};
-
-&ohci1 {
-	status = "okay";
-};
-
-
 &ths {
 	status = "okay";
 /*	vref-supply = <&reg_aldo>; */
 };
 
 &usbphy {
-	usb0_id_det-gpios = <&pio 3 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; /* PD9 */
-	usb0_vbus-supply = <&reg_usbvbus>;
-	usb1_vbus-supply = <&reg_usbvbus>;
+	usb1_vbus-supply = <&reg_vcc>;
 	status = "okay";
 };
 
@@ -431,16 +415,3 @@
 	phy-supply = <&reg_vcc_3v3>;
 	status = "disabled";
 };
-
-// &can0 {
-// 	pinctrl-names = "default";
-// 	pinctrl-0 = <&can0_pins>;
-// 	status = "okay";
-// };
-
-// &can1 {
-// 	pinctrl-names = "default";
-// 	pinctrl-0 = <&can1_pins>;
-// 	status = "disabled";
-// };
-

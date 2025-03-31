@@ -1,0 +1,48 @@
+#!/bin/sh
+
+start() {
+        printf "Starting USB: "
+        
+        modprobe libcomposite
+        modprobe usb_f_acm 
+
+        mount -t configfs none /sys/kernel/config
+        cd /sys/kernel/config/usb_gadget
+        mkdir -p g1
+        cd g1
+        echo 0x1d6b > idVendor
+        echo 0x0104 > idProduct
+        mkdir -p strings/0x409
+        echo "GLDZ GLDRONE T113" > strings/0x409/product
+        mkdir -p configs/c.1/strings/0x409
+        mkdir -p functions/acm.usb0
+        mkdir -p functions/acm.usb1
+        ln -s functions/acm.usb0 configs/c.1/
+        ln -s functions/acm.usb1 configs/c.1/
+        echo "musb-hdrc.2.auto" > UDC
+        [ $? -eq 0 ] && echo "OK" || echo "ERROR"
+}
+stop() {
+        [ $? -eq 0 ] && echo "OK" || echo "ERROR"
+}
+restart() {
+        stop
+        start
+}
+
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart|reload)
+        restart
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit $?
