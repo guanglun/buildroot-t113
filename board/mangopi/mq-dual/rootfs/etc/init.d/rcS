@@ -29,4 +29,4 @@ gpioset gpiochip0 116=0
 gpioset gpiochip0 117=0
 
 # cd /root/px4
-# ./bin/px4 -s px4_mc.config &
+# ./bin/px4 -s px4_mc.config -d &

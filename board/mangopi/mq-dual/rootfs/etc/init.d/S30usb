@@ -1,0 +1,35 @@
+#!/bin/sh
+
+start() {
+        printf "Starting USB: "
+        
+        modprobe libcomposite
+        modprobe u_serial
+        modprobe g_serial
+        
+        [ $? -eq 0 ] && echo "OK" || echo "ERROR"
+}
+stop() {
+        [ $? -eq 0 ] && echo "OK" || echo "ERROR"
+}
+restart() {
+        stop
+        start
+}
+
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart|reload)
+        restart
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit $?
