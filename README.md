@@ -1,56 +1,16 @@
-## Buildroot-Evlers
+## Buildroot-T113
 Based on buildroot-2023.02<br>
 Removes all original boards and adds new board support
 <br>
 
-### Support board list
-Note: Click the corresponding board to view the peripheral support or descriptions.
-|   **Manufacturer**    |                   **Board**                       |           **defconfig**           |             **Describe**                  |
-|-----------------------|---------------------------------------------------|-----------------------------------|-------------------------------------------|
-|   MangoPI             |   [MQ-Quad](./board/mangopi/mq-quad/README.md)    |   mangopi_mq_quad_defconfig       |   Base on Allwinner H616                  |
-|   MangoPI             |   [MQ-Dual](./board/mangopi/mq-dual/README.md)    |   mangopi_mq_dual_defconfig       |   Base on Allwinner T113-S3               |
-|   MangoPI             |   [R3](./board/mangopi/r3/README.md)              |   mangopi_r3_defconfig            |   Base on Allwinner F1C200s               |
-
-
 ### Get started quickly
 ```
-# Select the corresponding defconfig configuration file, For example: MangoPI MQ-Quad board
-make mangopi_mq_quad_defconfig
+# Select the corresponding defconfig configuration file, For example: GLDZ T113 board
+make gldz_t113_defconfig
 
 # Build and pack to output/images
 make 
 
-# Default password of the image is 123456
-```
-
-### Directory structure
-MangoPI MQ-Quad board example base on Allwinner H616:
-```
-├── configs                                         # buildroot configuration for each board
-└── board                                           # Board or chip file
-    ├── allwinner                                   # The configuration of the Allwinner chip
-    │   └── H616                                    # Allwinner H616 chip configs
-    │       ├── devicetree                          # The device tree for the chip
-    │       │   ├── linux                           # device tree for linux
-    │       │   └── uboot                           # device tree for u-boot
-    │       ├── patches                             # The patch for the chip
-    │       │   ├── linux                           # patch for linux kernel
-    │       │   └── uboot                           # patch for u-boot
-    │       ├── rootfs                              # The rootfs for the chip (overwrite)
-    |       └── scripts                             # Script used to create image files
-    |           ├── genimage_sdcard.cfg             # Configuration for generating TF card images files
-    |           └── post-build.sh                   # A script to execute after compiling
-    └── mangopi                                     # The configuration of the MangoPI series board
-        └── mq-quad                                 # The configuration of the MangoPI MQ-Quad board
-            ├── boot.cmd                            # u-boot command configuration of the boot kernel
-            ├── configs                             # The board configuration file for linux and u-boot
-            │   ├── linux_defconfig                 # Linux kernel config file
-            │   └── uboot_defconfig                 # u-boot config file
-            ├── devicetree                          # The device tree for the board
-            │   ├── linux                           # device tree for linux
-            │   └── uboot                           # device tree for u-boot
-            ├── README.md                           # The description of the board
-            └── rootfs                              # The rootfs for the board (overwrite)
 ```
 
 ### About buildroot
