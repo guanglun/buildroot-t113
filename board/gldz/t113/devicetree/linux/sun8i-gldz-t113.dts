@@ -377,12 +377,16 @@
 	status = "disabled";
 };
 
+&usb_otg {
+	dr_mode = "otg";
+	status = "okay";
+};
+
 &ohci1 {
 	status = "okay";
 };
 
-&usb_otg {
-	dr_mode = "otg";
+&ehci1 {
 	status = "okay";
 };
 

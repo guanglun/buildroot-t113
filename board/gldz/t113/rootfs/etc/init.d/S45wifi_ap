@@ -6,7 +6,7 @@
 start() {
         printf "Starting WiFi AP: "
         ifconfig wlan0 up
-        ifconfig wlan0 10.10.20.1
+        ifconfig wlan0 10.10.20.1 netmask 255.255.255.0
         udhcpd -f /etc/udhcpd.conf &
         hostapd -B /etc/hostapd.conf
         [ $? -eq 0 ] && echo "OK" || echo "ERROR"
